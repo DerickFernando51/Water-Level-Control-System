@@ -25,51 +25,51 @@ void __interrupt() isr(void){  //Interrupt Service Routine
         if(RB2==0 && RB1==0){
         
      //Motor 1 OFF
-        RC0 = 0;              //Make IN1 LOW
-        RC1 = 0;              //Make IN2 LOW
+        RC0 = 0;              //IN1 LOW
+        RC1 = 0;              //IN2 LOW
         
      //Motor 2 ON
-        RC3 = 1;             //Make IN3 HIGH
-        RC5 = 0;             //Make IN4 LOW
+        RC3 = 1;             //IN3 HIGH
+        RC5 = 0;             //IN4 LOW
         __delay_ms(500);     //Motor 2 ON for 500ms
-        RC3 = 0;             //Make IN3 LOW 
+        RC3 = 0;             //IN3 LOW 
     }
   }
 }
       
 void main(void){
-     TRISB0 = 1;        //Make sensor 3 as input
-     TRISB1 = 1;        //Make sensor 2 as input
-     TRISB2 = 1;        //Make sensor 1 as input
+     TRISB0 = 1;        //Set sensor 3 as input
+     TRISB1 = 1;        //Set sensor 2 as input
+     TRISB2 = 1;        //Set sensor 1 as input
      
-     TRISC0 = 0;       //Make IN1 as output
-     TRISC1 = 0;       //Make IN2 as output
-     TRISC3 = 0;       //Make IN3 as output
-     TRISC5 = 0;       //Make IN4 as output
+     TRISC0 = 0;       //Set IN1 as output
+     TRISC1 = 0;       //Set IN2 as output
+     TRISC3 = 0;       //Set IN3 as output
+     TRISC5 = 0;       //Set IN4 as output
      INTF = 0;         //Clear the interrupt
     
      GIE = 1;          //Enable global interrupt bit
      PEIE = 1;         //Enable the peripheral interrupt bit
      INTE = 1;         //Enable RB0 as external interrupt bit
 
-     PORTC = 0X00;     //Make PORTC LOW
+     PORTC = 0X00;     //PORTC LOW
     while(1){
-         RC0 = 0;      //Make IN1 LOW
+         RC0 = 0;      //IN1 LOW
      //Motor 2 OFF
-         RC3 = 0;      //Make IN3 LOW
-         RC5 = 0;      //Make IN4 LOW
+         RC3 = 0;      //IN3 LOW
+         RC5 = 0;      //IN4 LOW
         
         if(RB2==0 && RB1==1 && RB0==1){
     //Motor 1 ON
-            RC1 = 1;   //Make IN2 HIGH
+            RC1 = 1;   //IN2 HIGH
         }else if(RB2==0 && RB1==0 && RB0==1){
               //MOTOR 1 ON
             RC1 = 1;   //Make IN2 HIGH
         }else{
-            RC0 = 0;   //Make IN1 LOW
-            RC0 = 0;   //Make IN2 LOW
-            RC3 = 0;   //Make IN3 LOW
-            RC5 = 0;   //Make IN4 LOW
+            RC0 = 0;   //IN1 LOW
+            RC0 = 0;   //IN2 LOW
+            RC3 = 0;   //IN3 LOW
+            RC5 = 0;   //IN4 LOW
     }
   }
 }
